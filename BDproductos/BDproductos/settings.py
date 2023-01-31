@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
+
+from django.contrib.messages import constants as message_constants
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Productos'
+    'blog',
+    'autenticacion',
+
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -112,14 +117,19 @@ USE_I18N = True
 
 USE_TZ = True
 
-
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = '48d2719db0fb9b'
+EMAIL_HOST_PASSWORD = '6af6d5f0fdc865'
+EMAIL_PORT = '2525'
+EMAIL_USER_TLS = True
+EMAIL_USE_SSL = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
+    os.path.join(BASE_DIR, "statics")
 ]
 
 # Default primary key field type
@@ -130,3 +140,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # urls para archivos media de base de batos
 MEDIA_URLS = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#template formulario bootstrap 4
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# clases para los mensajes flash de bootstrap
+MESSAGE_TAGS = {
+    message_constants.DEBUG: 'debug',
+    message_constants.INFO: 'info',
+    message_constants.SUCCESS: 'success',
+    message_constants.WARNING: 'warning',
+    message_constants.ERROR: 'danger'
+
+
+}
