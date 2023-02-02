@@ -137,9 +137,6 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# urls para archivos media de base de batos
-MEDIA_URLS = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #template formulario bootstrap 4
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -151,6 +148,9 @@ MESSAGE_TAGS = {
     message_constants.SUCCESS: 'success',
     message_constants.WARNING: 'warning',
     message_constants.ERROR: 'danger'
-
-
 }
+
+# urls para archivos media de base de batos
+MEDIA_URLS = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
