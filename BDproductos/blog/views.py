@@ -2,11 +2,17 @@ from django.shortcuts import render, redirect
 from blog.form import Formulariopost
 from django.contrib import messages
 from blog.models import Post
+from django.core.paginator import Paginator
 
 # Create your views here.
 def index(request):
-    posts = Post.objects.all()
-    return render(request, "blog.html", {'posts':posts})
+    listado__posts = Post.objects.all()
+    paginator = Paginator(listado__posts,3)
+    pagina = request.GET.get("page") or 1
+    posts = paginator.get_page(pagina)
+    pagina_actual = int(pagina)
+    paginas = range(1, posts.paginator.num_pages +1) 
+    return render(request, "blog.html", {'posts':posts, "paginas": paginas, "pagina_actual": pagina_actual})
 
 def crear_post(request):
     if request.method == "POST":
