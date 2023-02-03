@@ -21,12 +21,19 @@
                 <div class="col-4">
                     <div class="card">
                         <img class="card-img-top" height="180" src="{{post.imagen.url}}" all="{{ post.titulo }}">
-                    <div class="card-body">
-                <h5 class="card-title">{{ post.titulo }}</h5>
-                <hr />
-                <h6 class="card-subtitle">Autor: {{ post.autor.username }}</h6>
-                <p class="card-text">Categoria: {{ post.categoria.nombre }}</p>
-            </div>        
+                        <div class="card-body">
+                            <h5 class="card-title">{{ post.titulo }}</h5>
+                            <hr />
+                            <h6 class="card-subtitle">Autor: {{ post.autor.username }}</h6>
+                            <p class="card-text">Categoria: {{ post.categoria.nombre }}</p>
+                        </div>
+                        <div class="card-footer">
+                            {% if user == post.autor %}
+                            <a href="{% url 'eliminar_post' post.id %}" class="btn btn-danger">
+                                Eliminar post
+                            </a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
                 {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}

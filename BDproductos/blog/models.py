@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+import os
+
+
 # Create your models here.
 class Categoria(models.Model):
     nombre = models.CharField(max_length=100, null=False, unique=True, verbose_name='Nombre')
@@ -21,6 +24,12 @@ class Post(models.Model):
     imagen = models.ImageField(upload_to='posts/%Y/%m/%d',null=True, blank=True, verbose_name='Imagen del post')
     fecha_alta = models.DateTimeField(auto_now=True, verbose_name='Fecha de alta')
     fecha_actualizacion = models.DateTimeField(auto_now=True, verbose_name='Fecha de actualización')
+
+    def delete(self, *args, **kwargs):
+        if os.path.isfile(self.imagen.path):         
+            os.remove(self.imagen.path)
+        super(Post, self).delete(*args, **kwargs)
+        
 
     def __str__(self):
         return self.titulo
