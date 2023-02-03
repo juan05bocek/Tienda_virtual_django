@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from blog.form import Formulariopost
 from django.contrib import messages
-
+from blog.models import Post
 
 # Create your views here.
 def index(request):
-    return render(request, "blog.html")
+    posts = Post.objects.all()
+    return render(request, "blog.html", {'posts':posts})
 
 def crear_post(request):
     if request.method == "POST":
