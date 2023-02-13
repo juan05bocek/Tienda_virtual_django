@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',
     'autenticacion',
     'productos',
 
@@ -117,6 +116,7 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
 
 EMAIL_BACKEND = 'django.core.mail.backends.smts.EmailBackend'
 EMAIL_HOST = 'smtp.mailtrap.io'
